@@ -1,0 +1,32 @@
+<div class="container p-4">
+    <div class="row">
+
+        {{#each link}}
+        <div class="col-md-3">
+            <div class="card text-center">
+
+                <div class="card-body fixed  ">
+                    <a href="{{url}}">
+                        <h3 class="card-header">
+                            {{titulo}}
+                        </h3>
+                    </a>
+                    <p class="m-2">{{descripcion}}</p>
+                     <p class="m-2">{{timeago created_at}}</p>
+
+                    <a href="/links/delete/{{id}}" class="btn btn-danger">Borrar Nota</a>
+
+                    <a href="/links/editar/{{id}}" class="btn btn-success">Editar Nota</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <div class="col-md-4 mx-auto" ></div>
+            <div class="card card-body text-center">
+                <p>No hay productos guardados.</p>
+                <a href="/links/agregar">Crea Uno</a>
+            </div>
+        {{/each}}
+    </div>
+
+</div>

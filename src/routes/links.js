@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const coneccion = require('../database');
 const  {estaLogueado} =  require('../lib/auth');
+
+
+
 router.get('/agregar',estaLogueado,(req,res)=>{
 
     res.render('links/agregar');
@@ -9,10 +12,11 @@ router.get('/agregar',estaLogueado,(req,res)=>{
 
 
 router.post('/agregar',estaLogueado, async(req,res)=>{
-    const{titulo , url ,descripcion} =req.body;
+    const{titulo , url ,descripcion } =req.body;
     const newData = {
         titulo,
         url,
+        usuario_id : req.user.id,
         descripcion
     };
     await coneccion.query('INSERT INTO links set ?',[newData]);
@@ -24,7 +28,7 @@ router.post('/agregar',estaLogueado, async(req,res)=>{
 
 router.get('/',async(req,res)=>{
 
-   const link = await coneccion.query('SELECT * FROM links');
+   const link = await coneccion.query('SELECT * FROM links WHERE usuario_id = ?',[req.user.id]);
    console.log(link);
    res.render('links/lista',{link});
 
@@ -50,7 +54,7 @@ router.get('/editar/:id',estaLogueado,async(req,res)=>{
 router.post('/editar/:id',estaLogueado,async(req,res)=>{
 
 const{id} = req.params;
-const{titulo,descripcion,url}=req.body;
+const{titulo,descripcion,url,usuario_id}=req.body;
 const nuevoLink={
     titulo,
     descripcion,

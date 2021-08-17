@@ -20,6 +20,8 @@ padding-top: 8rem;
 background: url('/img/descarga.jpeg');
 background-position: center center;
 background-size: cover;
+position: absolute;
+
 
 }
 .masthead h1 {

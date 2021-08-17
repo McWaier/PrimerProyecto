@@ -14,7 +14,7 @@ require('./lib/passport');
 
 //Configuraciones
 
-app.set('port',process.env.PORT ||5000);
+app.set('port',process.env.PORT ||3000);
 
 app.set('views', path.join(__dirname,'views'));
 app.engine('.hbs',exphbs({
@@ -62,7 +62,9 @@ app.use((req,res,next)=>{
 //Rutas
 app.use(require('./routes'));
 app.use(require('./routes/autenticacion'));
+app.use(require('./routes/productos'));
 app.use('/links',require('./routes/links'));
+
 
 //Publico
 app.use(express.static(path.join(__dirname,'public')));
