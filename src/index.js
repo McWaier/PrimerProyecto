@@ -7,6 +7,7 @@ const mysqlStore=require('express-mysql-session');
 const passport = require('passport')
 const { database } = require('./keys');
 const flash = require('connect-flash');
+
 //Inicializaciones
 
 const app = express();
@@ -24,6 +25,7 @@ app.engine('.hbs',exphbs({
     partialsDir: path.join(app.get('views'),'partials'),
     extname: '.hbs',
     helpers:require('./lib/handlebars')
+    
 
 }));
 

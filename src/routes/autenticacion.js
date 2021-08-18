@@ -2,19 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 const passport = require('passport');
-const { estaLogueado , noEstaLogueado} = require('../lib/auth');
+const { EstaLogueado , noEstaLogueado} = require('../lib/auth');
 
 
 
 
-router.get('/registro',noEstaLogueado,(req,res)=>{
+router.get('/registro',EstaLogueado,(req,res)=>{
 
 res.render('auth/registro');
 });
 
 
 
-router.post('/registro',noEstaLogueado,passport.authenticate('local.registro',{
+router.post('/registro',EstaLogueado,passport.authenticate('local.registro',{
    
     succesRedirect:'/perfil',
     failureRedirect:'/registro',
@@ -22,7 +22,7 @@ router.post('/registro',noEstaLogueado,passport.authenticate('local.registro',{
 
 
    }));
-   router.post('/registro',noEstaLogueado,passport.authenticate('local.registro',{
+   router.post('/registro',EstaLogueado,passport.authenticate('local.registro',{
    
     succesRedirect:'/perfil',
     failureRedirect:'/registro',
@@ -32,15 +32,15 @@ router.post('/registro',noEstaLogueado,passport.authenticate('local.registro',{
    }));
  
 
-   router.get('/perfil',estaLogueado,(req,res)=>{
+   router.get('/perfil',noEstaLogueado,(req,res)=>{
     res.render('perfil');
 });
-   router.get('/loggin',noEstaLogueado,(req,res)=>{
+   router.get('/loggin',EstaLogueado,(req,res)=>{
     res.render('auth/loggin');
 
    });
 
-      router.post('/loggin',noEstaLogueado,(req,res,next)=>{
+      router.post('/loggin',EstaLogueado,(req,res,next)=>{
     passport.authenticate('local.loggin',{
         succesRedirect:'/perfil',
         failureRedirect:'/registro',
@@ -50,7 +50,7 @@ router.post('/registro',noEstaLogueado,passport.authenticate('local.registro',{
     })(req,res,next);
    });
        
-   router.post('/loggin',noEstaLogueado,(req,res,next)=>{
+   router.post('/loggin',EstaLogueado,(req,res,next)=>{
     passport.authenticate('local.loggin',{
         succesRedirect:'/perfil',
         failureRedirect:'/registro',

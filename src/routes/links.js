@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const coneccion = require('../database');
-const  {estaLogueado} =  require('../lib/auth');
+const  {noEstaLogueado} =  require('../lib/auth');
 
 
 
-router.get('/agregar',estaLogueado,(req,res)=>{
+router.get('/agregar',noEstaLogueado,(req,res)=>{
 
     res.render('links/agregar');
 });
 
 
-router.post('/agregar',estaLogueado, async(req,res)=>{
+router.post('/agregar',noEstaLogueado, async(req,res)=>{
     const{titulo , url ,descripcion } =req.body;
     const newData = {
         titulo,
@@ -34,7 +34,7 @@ router.get('/',async(req,res)=>{
 
 })
 
-router.get('/delete/:id',estaLogueado,async(req,res)=>{
+router.get('/delete/:id',noEstaLogueado,async(req,res)=>{
     const {id} = req.params;
    // console.log(req.param.id);
     await coneccion.query('DELETE  FROM links WHERE ID =?',[id]);
@@ -42,7 +42,7 @@ router.get('/delete/:id',estaLogueado,async(req,res)=>{
     res.redirect('/links');
 });
 
-router.get('/editar/:id',estaLogueado,async(req,res)=>{
+router.get('/editar/:id',noEstaLogueado,async(req,res)=>{
     const {id} = req.params;
      const links =await coneccion.query('SELECT * FROM links WHERE id=?',[id]);
     
@@ -51,7 +51,7 @@ router.get('/editar/:id',estaLogueado,async(req,res)=>{
 });
 
 
-router.post('/editar/:id',estaLogueado,async(req,res)=>{
+router.post('/editar/:id',noEstaLogueado,async(req,res)=>{
 
 const{id} = req.params;
 const{titulo,descripcion,url,usuario_id}=req.body;

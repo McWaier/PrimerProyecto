@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const coneccion = require('../database');
-const  {estaLogueado} =  require('../lib/auth');
+const  {noEstaLogueado} =  require('../lib/auth');
+const  {esusuarioPrincipal} =  require('../lib/auth');
 
 
 
-router.get('/agregarProd',estaLogueado,(req,res)=>{
+router.get('/agregarProd',noEstaLogueado,esusuarioPrincipal,(req,res)=>{
 
     res.render('productos/agregarProd');
 });
 
 
-router.post('/productos/agregarProd',estaLogueado, async(req,res)=>{
+router.post('/productos/agregarProd',noEstaLogueado,esusuarioPrincipal, async(req,res)=>{
     console.log(req.body);
     const{nombre , codigo_barras ,descripcion_prod,precio } =req.body;
    
@@ -30,7 +31,7 @@ router.post('/productos/agregarProd',estaLogueado, async(req,res)=>{
 
 });
 
-router.get('/productos',async(req,res)=>{
+router.get('/productos',noEstaLogueado,esusuarioPrincipal,async(req,res)=>{
 
    const link = await coneccion.query('SELECT * FROM productos WHERE usuario_id = ?',[req.user.id]);
 
@@ -53,7 +54,7 @@ router.get('/productos2',async(req,res)=>{
 
 
 
-router.get('/productos/delete/:id',estaLogueado,async(req,res)=>{
+router.get('/productos/delete/:id',noEstaLogueado,esusuarioPrincipal,async(req,res)=>{
     const {id} = req.params;
    // console.log(req.param.id);
     await coneccion.query('DELETE  FROM productos WHERE ID =?',[id]);
@@ -61,7 +62,7 @@ router.get('/productos/delete/:id',estaLogueado,async(req,res)=>{
     res.redirect('/productos');
 });
 
-router.get('/productos/productosedit/:id',estaLogueado,async(req,res)=>{
+router.get('/productos/productosedit/:id',noEstaLogueado,esusuarioPrincipal,async(req,res)=>{
     const {id} = req.params;
      const link =await coneccion.query('SELECT * FROM productos WHERE id=?',[id]);
      console.log(link)
@@ -71,7 +72,7 @@ router.get('/productos/productosedit/:id',estaLogueado,async(req,res)=>{
 });
 
 
-router.post('/productos/productosedit/:id',estaLogueado,async(req,res)=>{
+router.post('/productos/productosedit/:id',noEstaLogueado,esusuarioPrincipal,async(req,res)=>{
 
     console.log(req.body);
 const{id} = req.params;

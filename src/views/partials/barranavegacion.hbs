@@ -1,52 +1,69 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
+  <div class="container">
     <a class="navbar-brand" href="/">Enlaces</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav ml-auto">
-      {{#if user}}
-<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/links">Todas las Notas</a>
-      <div class="dropdown-divider "></div>
-          <a class="dropdown-item" href="/links/agregar">Agregar Nota</a>
-        </div>
-      </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        {{#equal user.nombre "mariano" }}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            link
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/links">Todas las Notas</a>
+            <div class="dropdown-divider "></div>
+            <a class="dropdown-item" href="/links/agregar">Agregar Nota</a>
+          </div>
+        </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Productos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/productos">Todas los Productos</a>
- 
-      </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Productos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/productos">Todas los Productos</a>
 
-      <li class="nav-item">
-        <a href="/perfil" class="nav-link"> Perfil </a>
-      </li>
-      <li class="nav-item">
-        <a href="/cerrar" class="nav-link">LogOut</a>
-      </li>
-    
-      {{else}}
-      <li class="nav-item">
-        <a href="/registro" class="nav-link">Registrarse</a>
-      </li>
+        </li>
 
-      <li class="nav-item">
-        <a href="/loggin" class="nav-link">Loggin</a>
-      </li>
+        <li class="nav-item">
+          <a href="/perfil" class="nav-link"> Perfil </a>
+        </li>
+        <li class="nav-item">
+          <a href="/cerrar" class="nav-link">LogOut</a>
+        </li>
 
-      {{/if}}
-      
-      
-    </ul>
+        {{else}}
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            link
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/links">Todas las Notas</a>
+            <div class="dropdown-divider "></div>
+            <a class="dropdown-item" href="/links/agregar">Agregar Nota</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="/registro" class="nav-link">Registrarse</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/loggin" class="nav-link">Loggin</a>
+        </li>
+ <li class="nav-item">
+          <a href="/cerrar" class="nav-link">LogOut</a>
+        </li>
+
+        {{/equal}}
+
+
+      </ul>
+    </div>
   </div>
-</div>
 </nav>
